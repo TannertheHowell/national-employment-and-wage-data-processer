@@ -7,19 +7,94 @@
 
 Deliver:
 
-*   [ ] Re-write the instructions in your own words.
+* [x] Re-write the instructions in your own words.
     *   If you don't do this, you won't know what you're supposed to do!
     *   Don't leave out details!
-*   [ ] Explain the problem this program aims to solve.
+* [x] Explain the problem this program aims to solve.
     *   Describe what a *good* solution looks like.
     *   List what you already know how to do.
     *   Point out any challenges that you can foresee.
-*   [ ] List all of the data that is used by the program, making note of where it comes from.
+* [x] List all of the data that is used by the program, making note of where it comes from.
     *   Explain what form the output will take.
-*   [ ] List the algorithms that will be used (but don't write them yet).
-*   [ ] Tag the last commit in this phase `analyzed`
+* [x] List the algorithms that will be used (but don't write them yet).
+* [x] Tag the last commit in this phase `analyzed`
     *   *Grace Points: if this tag is pushed by midnight on the Sunday before the due date, you will receive up to 5 points back*
 
+* This assignment's overall purpose is to take a large data set, in this case employment data from the Bureau of Labor
+Statistics. The data is given in a CSV file that is several million lines long and a few hundred mb. Due to the size of 
+the file I will need to cut it down into the appropriate sections/categories in order to make the data usable in a 
+reasonable amount of time. The only arguments taken in this assignment will be a directory. 
+
+* The assignment will require the hard coding of the area-titles.csv and 2021.annual.singlefile.csv files into the program.
+
+* Another aspect of this assignment will be the program running at a sufficiently fast pace. 
+  * This can be tested using the Performance Benchmark Tool
+
+* The repositories must be set up exactly the same as the sample output. This means each of the directories under data/ 
+will have: 
+  * README.md
+  * area-titles.csv
+  * output.txt 
+* The output must also have the correct STDOUT output, have deleted all the print()'s for the TODO's while having:
+  * no extra newlines
+  * no extra spaces
+  * no extra quote marks
+  * no FIPS codes
+
+* The report must be filled out in the correct way using the rpt dictionary for storage. The use of other programs or
+modules is not allowed. These include:
+  * os.system()
+  * subprocess
+  * pipes
+  * csv module
+  * numpy
+
+* For the FIPS codes:
+  * Be careful to deal with overlying areas to exclude them to not double count them
+  * The QCEW Area Codes and Titles documentation explains how they are formatted
+
+* Using area-titles.csv
+  * It is not to be modified, but to be read in line by line (making me think cat)
+  * The str.split can come in handy with help from 'help()' for how to use it
+  * FIPS areas that will be included in the report should be stored in a dictionary
+  * The report includes not just states but also DC, territories and some other categories like "Out-of-State"
+  * The following areas should be excluded to avoid double/triple counting some areas:
+    * "U.S. combined" and "TOTAL" FIPS areas
+    * "statewide" areas
+    * MicroSAs
+    * MSAs
+    * CSAs
+    * Federal Bureau of Investigation – undesignated
+  * Helpful tips: 
+    * "If your code considers the human-friendly area title, you're doing it wrong"
+    * "some FIPS area codes look like integers, always treat them as strings"
+
+* Processing the 2021.annual.singlefile.csv
+  * This file should be hard-coded into the program
+  * The file has a few key fields:
+    * area_fips
+    * industry_code
+    * own_code
+    * total_annual_wages
+    * annual_avg_emplvl
+    * annual_avg_estabs
+  * Handle the file one lien at a time, don't slurp it all like past assignments. 
+  * The program should be skipping passed unimportant or duplicate information (using the area_fips field)
+  * Strings must be converted to integers, not using eval, just use the int() way. 
+  * Handling of All Industries:
+    * If the industry_code is 10 and own_code is 0, then the data goes into the all industries portion of the report
+  * Handling of Software Publishing Industry:
+    * If the industry_code is 5112 and own_code is 5, then add it to the software publishing industry portion of the report
+
+* Lastly, when it comes to speed: get the code working first, then try to make it fast
+  * Try to pass through the file only once
+  * Avoid nested for loops, two separate ones should do
+  * Use a dictionary, not a list or tuples for the FIPS area codes
+
+The overall output of the program should match, to the line and spacing, the sample output in the data/ directory. Each
+of them contain an output.txt that I will need to be able to perfectly reproduce. In order to do this I will only be using
+the 2021.annual.singlefile.csv to get all the data. I will be using a variety of text tools (cut, paste, etc.) to pull apart
+the main file into smaller, more usable directories. The exact layout of that output is in the samples. 
 
 ## Phase 1: Design (tag name `designed`)
 *(30% of your effort)*
