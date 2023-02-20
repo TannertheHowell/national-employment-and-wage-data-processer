@@ -103,17 +103,60 @@ the main file into smaller, more usable directories. The exact layout of that ou
 
 Deliver:
 
-*   [ ] Function signatures that include:
+*   [x] Function signatures that include:
     *   Descriptive names.
     *   Parameter lists.
     *   Documentation strings that explain its purpose and types of inputs and outputs.
-*   [ ] Pseudocode that captures how each function works.
+*   [x] Pseudocode that captures how each function works.
     *   Pseudocode != source code.  Do not paste your finished source code into this part of the plan.
 *   Explain what happens in the face of good and bad input.
     *   Write a few specific examples that occur to you, and use them later when testing
-*   [ ] Tag the last commit in this phase `designed`
+*   [x] Tag the last commit in this phase `designed`
     *   *Grace Points: if this tag is pushed by midnight on the Sunday before the due date, you will receive up to 5 points back*
 
+In order to get the smaller dictionaries of data from the single file I will need to do something like the following:
+ 
+open(area-titles.csv)
+   for line in file:
+      Check the FIPS code based on the area_fips (not area_title)
+          if FIPS code is valid:  
+              Check that the QCEW Area Code is one of the valid areas
+                  if its valid 
+                    split the string where appropriate and add it to the dictionary using rpt
+                  if not valid, go to the next line
+          else:
+              skip it (next line by breaking out of this one)
+close(area_titles.csv)
+
+* Making sure to exclude the areas like MicroSAs, CSAs and "statewide" areas. Once this is done the output should only
+contain the wanted areas. This output should include exactly 3,463 FIPS areas. 
+  * Good output should have 3,463 FIPS areas left out of the initial 4,726 areas
+  * All the included data like Puerto Rico and the Virgin Islands should be included while the excluded areas like 
+     the MSAs and CSAs should all be excluded.
+
+open(2021.annual.singlefile.csv)
+    for line in file (go line by line no slurp)
+      copyOfLine = line
+      if (line.fips == validFips and line.sector == validSector):
+          if (industry_code == "10" and own_code == "0"):
+             copyOfLine += all industries portion of report
+          if (industry_code == "5112" and own_code == "5"):
+              copyOfLine += software publishing industry portion of report
+      else:
+          skip it
+
+close(2021.annual.singlefile.csv)
+
+* This section of the code should output only the valid FIPS codes and industry codes. Good output would only have the 
+allowed sections and codes while bad output would include things in the wrong industry, or it could include data that is
+not valid for this (like areas that should have been excluded). If the data is exactly right, it should match the output
+in the demo files. 
+
+* This is the information that I currently am seeing as needed for this project, though I am sure that this section will
+need updating once I get into the next phase. As I find more areas that need functions or other aspects I will come back
+and update this section, but for now it is done. 
+
+* [x] Took the quiz and got 10/10
 
 ## Phase 2: Implementation (tag name `implemented`)
 *(15% of your effort)*
