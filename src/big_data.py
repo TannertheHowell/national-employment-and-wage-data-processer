@@ -66,7 +66,7 @@ f = open(sys.argv[1]+"/area-titles.csv")
 acceptedAreas = {}
 
 for line in f:
-    splitLine = line.split(",")
+    splitLine = line.split(",", 1)
     # Excluding areas to avoid double/triple counting
     if splitLine[0].startswith('"US'):
         continue
@@ -81,18 +81,48 @@ for line in f:
     elif splitLine[0].endswith('000"'):
         continue
     else:
-        acceptedAreas[splitLine[0]] = splitLine
+        acceptedAreas[splitLine[0]] = splitLine[1].rstrip()
 f.close()
+
+# print("Pairs: ")
+# print(len(acceptedAreas))
 
 print("TODO: if opening the file 'sys.argv[1]/2021.annual.singlefile.csv' fails, let your program crash here")  # DELETE ME
 f = open(sys.argv[1]+"/2021.annual.singlefile.csv")
 
-print("TODO: Collect information from 'sys.argv[1]/2021.annual.singlefile.csv'")  # DELETE ME  	  	  
+print("TODO: Collect information from 'sys.argv[1]/2021.annual.singlefile.csv'")  # DELETE ME
+
+"""
+thing      fields   
+area_fips:  0
+industry_code: 2
+own_code: 1
+total_annual_wages: 11
+annual_avg_emplvl: 10
+annual_avg_estabs: 9
+"""
+
+for line in f:
+    separatedLine = line.split(",")
+    if separatedLine[0].startswith("area"):
+        continue
+    if separatedLine[0] not in splitLine:
+        continue
+    if separatedLine[2] != "10" or "5112" or separatedLine[1] != "0" or "5":
+        continue
+    if separatedLine[2] == "10" and separatedLine[1] == "0":
+        # add it to the all industries report
+        pass
+    if separatedLine[2] == "5112" and separatedLine[1] == "5":
+        # add it to the software publishing industry report
+        pass
+
+
 
 print("TODO: Fill in the report dictionary for all industries")  # DELETE ME  	  	  
 rpt['all']['num_areas']           = 1337  	  	  
 
-rpt['all']['total_annual_wages']  = 13333337  	  	  
+rpt['all']['total_annual_wages']  = 13333337
 rpt['all']['max_annual_wage']     = ["Trantor", 123456]  	  	  
 
 rpt['all']['total_estab']         = 42  	  	  
