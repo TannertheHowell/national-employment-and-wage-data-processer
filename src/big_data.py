@@ -52,16 +52,41 @@ rpt = {
         },  	  	  
 }  	  	  
 
-print("TODO: if sys.argv[1] is not given, print a usage message and exit")  # DELETE ME  	  	  
+# Open the file, if it crashes it'll output the error
+if len(sys.argv) < 2:
+    print("Usage: src/big_data.py DATA_DIRECTORY")
+    sys.exit(1)
 
 print("Reading the databases...", file=sys.stderr)  	  	  
 before = time.time()  	  	  
 
-print("TODO: if opening the file 'sys.argv[1]/area-titles.csv' fails, let your program crash here")  # DELETE ME  	  	  
-print("TODO: Convert the file 'sys.argv[1]/area-titles.csv' into a dictionary")  # DELETE ME  	  	  
-print("TODO: the FIPS dictionary should contain 3,463 pairs")  # DELETE ME  	  	  
+f = open(sys.argv[1]+"/area-titles.csv")
 
-print("TODO: if opening the file 'sys.argv[1]/2021.annual.singlefile.csv' fails, let your program crash here")  # DELETE ME  	  	  
+# Empty dictionary to store the correct FIPs areas
+acceptedAreas = {}
+
+for line in f:
+    splitLine = line.split(",")
+    # Excluding areas to avoid double/triple counting
+    if splitLine[0].startswith('"US'):
+        continue
+    elif splitLine[0].startswith('"C'):
+        continue
+    elif splitLine[0].startswith('"M'):
+        continue
+    elif splitLine[0].startswith('"C'):
+        continue
+    elif splitLine[0].startswith('"a'):
+        continue
+    elif splitLine[0].endswith('000"'):
+        continue
+    else:
+        acceptedAreas[splitLine[0]] = splitLine
+f.close()
+
+print("TODO: if opening the file 'sys.argv[1]/2021.annual.singlefile.csv' fails, let your program crash here")  # DELETE ME
+f = open(sys.argv[1]+"/2021.annual.singlefile.csv")
+
 print("TODO: Collect information from 'sys.argv[1]/2021.annual.singlefile.csv'")  # DELETE ME  	  	  
 
 print("TODO: Fill in the report dictionary for all industries")  # DELETE ME  	  	  

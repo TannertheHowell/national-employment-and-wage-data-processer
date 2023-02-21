@@ -170,6 +170,7 @@ Deliver:
     *   e.g. things you learned, things that didn't go according to plan
 *   [ ] Tag the last commit in this phase `implemented`
 
+Part of this phase was running the benchmark tool. While using my computer the big_data.py should finish in under 23.29s.
 
 ## Phase 3: Testing and Debugging (tag name `tested`)
 *(30% of your effort)*
