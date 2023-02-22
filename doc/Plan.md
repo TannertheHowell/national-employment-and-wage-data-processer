@@ -226,7 +226,7 @@ Spend a few minutes writing thoughtful answers to these questions.  They are mea
 
 Deliver:
 
-*   [ ] Write brief and honest answers to these questions:
+*   [x] Write brief and honest answers to these questions:
     *   What parts of your program are sloppily written and hard to understand?
         *   Are there parts of your program which you aren't quite sure how/why they work?
         *   If a bug is reported in a few months, how long would it take you to find the cause?
@@ -238,5 +238,9 @@ Deliver:
         *   ...your computer's hardware?
         *   ...the operating system?
         *   ...to the next version of Python?
-*   [ ] Make one final commit and push your **completed** Software Development Plan to GitLab.
-*   [ ] Respond to the **Assignment Reflection Survey** on Canvas.
+*   [x] Make one final commit and push your **completed** Software Development Plan to GitLab.
+*   [x] Respond to the **Assignment Reflection Survey** on Canvas.
+
+I think this code is in pretty good shape. I made comments more frequently than I normally do, and it helped along the way. 
+In the future I could likely see myself being able to add to this, or maybe gut this for parts to do something similar on
+another project. Overall this is one of the most interesting and seemingly useful projects that we have worked on. 
