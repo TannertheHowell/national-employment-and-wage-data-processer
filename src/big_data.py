@@ -81,75 +81,57 @@ for line in f:
     elif splitLine[0].endswith('000"'):
         continue
     else:
-        acceptedAreas[splitLine[0]] = splitLine[1].rstrip()
+        acceptedAreas[splitLine[0]] = splitLine[1].rstrip()[1:-1]
 f.close()
 
-# print("Pairs: ")
-# print(len(acceptedAreas))
-
-print("TODO: if opening the file 'sys.argv[1]/2021.annual.singlefile.csv' fails, let your program crash here")  # DELETE ME
 f = open(sys.argv[1]+"/2021.annual.singlefile.csv")
-
-print("TODO: Collect information from 'sys.argv[1]/2021.annual.singlefile.csv'")  # DELETE ME
-
-"""
-thing      fields   
-area_fips:  0
-industry_code: 2
-own_code: 1
-total_annual_wages: 11
-annual_avg_emplvl: 10
-annual_avg_estabs: 9
-"""
 
 for line in f:
     separatedLine = line.split(",")
-    if separatedLine[0].startswith("area"):
+    if separatedLine[0].startswith('"area_fips"'):
         continue
-    if separatedLine[0] not in splitLine:
+    if separatedLine[0] not in acceptedAreas:
         continue
-    if separatedLine[2] != "10" or "5112" or separatedLine[1] != "0" or "5":
-        continue
-    if separatedLine[2] == "10" and separatedLine[1] == "0":
+
+    if separatedLine[2] == '"10"' and separatedLine[1] == '"0"':
         # add it to the all industries report
-        pass
-    if separatedLine[2] == "5112" and separatedLine[1] == "5":
+        rpt['all']['num_areas'] += 1
+
+        rpt['all']['total_annual_wages'] += int(separatedLine[10])
+        if int(separatedLine[10]) > rpt['all']['max_annual_wage'][1]:
+            rpt['all']['max_annual_wage'] = [acceptedAreas[separatedLine[0]], int(separatedLine[10])]
+
+        rpt['all']['total_estab'] += int(separatedLine[8])
+
+        if int(separatedLine[8]) > rpt['all']['max_estab'][1]:
+            rpt['all']['max_estab'] = [acceptedAreas[separatedLine[0]], int(separatedLine[8])]
+
+        rpt['all']['total_empl'] += int(separatedLine[9])
+
+        if int(separatedLine[9]) > rpt['all']['max_empl'][1]:
+            rpt['all']['max_empl'] = [acceptedAreas[separatedLine[0]], int(separatedLine[9])]
+
+    if separatedLine[2] == '"5112"' and separatedLine[1] == '"5"':
         # add it to the software publishing industry report
-        pass
+        rpt['soft']['num_areas'] += 1
 
+        rpt['soft']['total_annual_wages'] += int(separatedLine[10])
+        if int(separatedLine[10]) > rpt['soft']['max_annual_wage'][1]:
+            rpt['soft']['max_annual_wage'] = [acceptedAreas[separatedLine[0]], int(separatedLine[10])]
 
+        rpt['soft']['total_estab'] += int(separatedLine[8])
 
-print("TODO: Fill in the report dictionary for all industries")  # DELETE ME  	  	  
-rpt['all']['num_areas']           = 1337  	  	  
+        if int(separatedLine[8]) > rpt['soft']['max_estab'][1]:
+            rpt['soft']['max_estab'] = [acceptedAreas[separatedLine[0]], int(separatedLine[8])]
 
-rpt['all']['total_annual_wages']  = 13333337
-rpt['all']['max_annual_wage']     = ["Trantor", 123456]  	  	  
+        rpt['soft']['total_empl'] += int(separatedLine[9])
 
-rpt['all']['total_estab']         = 42  	  	  
-rpt['all']['max_estab']           = ["Terminus", 12]  	  	  
-
-rpt['all']['total_empl']          = 987654  	  	  
-rpt['all']['max_empl']            = ["Anacreon", 654]  	  	  
-
-
-print("TODO: Fill in the report dictionary for the software publishing industry")  # DELETE ME  	  	  
-rpt['soft']['num_areas']          = 1010  	  	  
-
-rpt['soft']['total_annual_wages'] = 101001110111  	  	  
-rpt['soft']['max_annual_wage']    = ["Helicon", 110010001]  	  	  
-
-rpt['soft']['total_estab']        = 1110111  	  	  
-rpt['soft']['max_estab']          = ["Solaria", 11000]  	  	  
-
-rpt['soft']['total_empl']         = 100010011  	  	  
-rpt['soft']['max_empl']           = ["Gaia", 10110010]  	  	  
-
+        if int(separatedLine[9]) > rpt['soft']['max_empl'][1]:
+            rpt['soft']['max_empl'] = [acceptedAreas[separatedLine[0]], int(separatedLine[9])]
 
 after = time.time()  	  	  
 print(f"Done in {after - before:.3f} seconds!", file=sys.stderr)  	  	  
 
-
 # Print the completed report  	  	  
 print_report(rpt)  	  	  
 
-print("\n\nTODO: did you delete all of the TODO messages?")  # DELETE ME  	  	  
