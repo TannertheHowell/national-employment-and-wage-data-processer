@@ -183,12 +183,23 @@ Part of this phase was running the benchmark tool. While using my computer the b
 
 Deliver:
 
-*   [ ] A set of test cases that you have personally run on your computer.
+*   [x] A set of test cases that you have personally run on your computer.
     *   Include a description of what happened for each test case.
     *   For any bugs discovered, describe their cause and remedy.
     *   Write your test cases in plain language such that a non-coder could run them and replicate your experience.
-*   [ ] Tag the last commit in this phase `tested`
+*   [x] Tag the last commit in this phase `tested`
 
+So far I have gone through and tested the outputs for:
+
+* DC_all_industries
+  * Ran the diff check, 0 differences in output. 
+  * No bugs or issues after running the report from the full 2021 data, the comparing it with the diff -u of the output.txt
+  from the sub folder compared to the new report made from the full report. 
+* I ran all the other sub folders with the same results. I didn't want to copy and paste the same bullet over and over.
+  * Seriously each and every single one. No issues, no differences on any of them. 
+
+The main bugs came during my actual writing of the code. I wrote down the two most annoying ones in more detail in Phase 2
+but the short of it was dealing with the quote marks and some indexing errors. 
 
 ## Phase 4: Deployment (tag name `deployed`)
 *(5% of your effort)*
