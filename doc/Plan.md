@@ -165,10 +165,16 @@ and update this section, but for now it is done.
 
 Deliver:
 
-*   [ ] More or less working code.
-*   [ ] Note any relevant and interesting events that happened while you wrote the code.
+*   [x] More or less working code.
+*   [x] Note any relevant and interesting events that happened while you wrote the code.
     *   e.g. things you learned, things that didn't go according to plan
-*   [ ] Tag the last commit in this phase `implemented`
+*   [x] Tag the last commit in this phase `implemented`
+
+This section went actually pretty well. I ended up with a lot more conditional statements that I thought I would have 
+used, not a bad thing but there were just more cases to be caught. The overall speed seems fine on the program. I had a 
+few issues along the way with having the index be off, but thanks to the numbers being super far off I was able to fix it 
+pretty quick. I also had some issues with stripping the "" on my locations, but it worked out fine. Going to commit this 
+phase now. 
 
 Part of this phase was running the benchmark tool. While using my computer the big_data.py should finish in under 23.29s.
 
