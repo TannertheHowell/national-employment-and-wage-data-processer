@@ -1,0 +1,36 @@
+[==========================================================]
+[ US BLS Quarterly Census of Employment and Wages for 2021 ]
+[==========================================================]
+
+Statistics over all industries
+-----------------------------------------------------------
+Number of FIPS areas in report       0
+
+Total annual wages                   $0
+Area with maximum annual wages       
+Maximum reported wage                $0
+
+Total number of establishments       0
+Area with most establishments        
+Maximum # of establishments          0
+
+Total annual employment level        0
+Area with maximum employment         
+Maximum reported employment level    0
+
+
+Statistics in the software publishing industry
+-----------------------------------------------------------
+Number of FIPS areas in report       21
+
+Total annual wages                   $2,222,326,372
+Area with maximum annual wages       Utah County, Utah
+Maximum reported wage                $1,159,664,504
+
+Total number of establishments       1,550
+Area with most establishments        Salt Lake County, Utah
+Maximum # of establishments          1,035
+
+Total annual employment level        14,861
+Area with maximum employment         Utah County, Utah
+Maximum reported employment level    7,226
